@@ -1,3 +1,8 @@
+<?php
+  // dd($ppps);
+  // exit;
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,30 +46,15 @@
       @endauth
       <h2>投稿一覧</h2>
       <ul>
+
+        @forelse ($posts as $post)
         <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
+          <p>{{ $post->username }} {{ $post->created_at }}</p>
+          <p>{{ $post->body }}</p>
         </li>
-        <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
-        </li>
-        <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
-        </li>
-        <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
-        </li>
-        <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
-        </li>
-        <li>
-          <p>ユーザー1 2022-08-11 21:12</p>
-          <p>初投稿です！</p>
-        </li>
+        @empty
+          <li>投稿はまだありません！</li>
+        @endforelse
       </ul>
     </div>
   </main>
