@@ -1,6 +1,12 @@
 <?php
   // dd($ppps);
   // exit;
+  // $user = auth()->user();
+  // $id = auth()->id();
+  // $username = \Auth::user()->name;
+  // echo $username;
+  // dd($user);
+  // exit;
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +45,16 @@
   <main>
     <div class="container">
       @auth
-        <div class="form-post">
-          <textarea name=""></textarea>
-          <button>投稿する</button>
-        </div>
+        <form method="post" action="{{ route('posts.create') }}">
+          @csrf
+          <div class="form-post">
+            <textarea name="body">{{ old('body') }}</textarea>
+            @error('body')
+              <div class="error">{{ $message }}</div>
+            @enderror
+            <button>投稿する</button>
+          </div>
+        </form>
       @endauth
       <h2>投稿一覧</h2>
       <ul>
@@ -50,7 +62,7 @@
         @forelse ($posts as $post)
         <li>
           <p>{{ $post->username }} {{ $post->created_at }}</p>
-          <p>{{ $post->body }}</p>
+          <p>{!! nl2br(e($post->body)) !!}</p>
         </li>
         @empty
           <li>投稿はまだありません！</li>

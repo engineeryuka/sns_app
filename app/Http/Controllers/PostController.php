@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use \Auth;
 
 class PostController extends Controller
 {
@@ -28,10 +29,30 @@ class PostController extends Controller
 
     public function index() {
 
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::latest()->get();
 
         return view('index')
             // ->with(['posts' => $this->posts]);
             ->with(['posts' => $posts]);
+    }
+
+    public function create(Request $request) {
+
+        $request->validate([
+            'body' => 'required|max:140',
+        ],[
+            'body.required' => '投稿内容は必須です',
+            'body.max' => '140文字以内で入力してください',
+        ]);
+
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->username = Auth::user()->name;
+        $post->body = $request->body;
+        $post->save();
+
+        return redirect()
+            ->route('index');
     }
 }

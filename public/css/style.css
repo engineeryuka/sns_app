@@ -73,3 +73,10 @@ h2 {
 h2 + ul > li {
   border-bottom: 1px solid #ccc;
 }
+
+/* エラー */
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: left;
+}

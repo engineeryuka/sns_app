@@ -38,9 +38,13 @@ use App\Http\Controllers\PostController;
 //         ->with(['posts' => $posts]);
 // });
 // PostControllerのindexメソッドを呼び出す
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])
+    ->name('index');
 
 Auth::routes();
 
 // コメントアウト 岡本由
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/create', [PostController::class, 'create'])
+    ->name('posts.create');
