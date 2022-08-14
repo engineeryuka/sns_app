@@ -56,11 +56,21 @@
           </div>
         </form>
       @endauth
-      <h2>投稿一覧</h2>
+      
+      <h2>
+        <span>投稿一覧</span>
+        @auth
+          <button onclick="location.href='{{ route('posts.show') }}'">投稿を管理する</button>
+        @endauth
+      </h2>
+
       <ul>
 
         @forelse ($posts as $post)
         <li>
+          @if ($post->created_at <> $post->updated_at)
+            <p class="editcheck">編集済み</p>
+          @endif
           <p>{{ $post->username }} {{ $post->created_at }}</p>
           <p>{!! nl2br(e($post->body)) !!}</p>
         </li>

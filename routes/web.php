@@ -48,3 +48,24 @@ Auth::routes();
 
 Route::post('/create', [PostController::class, 'create'])
     ->name('posts.create');
+
+Route::get('/show', [PostController::class, 'show'])
+    ->name('posts.show')
+    ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
+
+Route::get('/{post}/edit', [PostController::class, 'edit'])
+    ->name('posts.edit')
+    ->where('post', '[0-9]+')
+    ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
+Route::patch('/{post}/update', [PostController::class, 'update'])
+    ->name('posts.update')
+    ->where('post', '[0-9]+');
+
+Route::get('/{post}/detail', [PostController::class, 'detail'])
+    ->name('posts.detail')
+    ->where('post', '[0-9]+')
+    ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
+
+Route::delete('/{post}/destroy', [PostController::class, 'destroy'])
+    ->name('posts.destroy')
+    ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
