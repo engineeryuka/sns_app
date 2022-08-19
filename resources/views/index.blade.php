@@ -28,7 +28,7 @@
               <button onclick="location.href='{{ route('login') }}'">ログイン</button>
             </li>
             <li>
-              <button onclick="location.href='{{ route('register') }}'">新規登録</button>
+              <button onclick="location.href='{{ route('register') }}'">新規会員登録</button>
             </li>
           @else
             <li>
