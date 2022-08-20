@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Auth\WithdrawalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,7 @@ Route::delete('/{post}/destroy', [PostController::class, 'destroy'])
 Route::post('/{post}/comments', [CommentController::class, 'create'])
     ->name('comments.create')
     ->where('post', '[0-9]+');
+
+Route::delete('/withdrawal', [WithdrawalController::class, 'withdrawal'])
+    ->name('withdrawal')
+    ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
