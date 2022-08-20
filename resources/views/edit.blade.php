@@ -51,6 +51,18 @@
               <button>更新</button>
           </div>
         </form>
+
+        <h3>コメント</h3>
+          <ul>
+            @forelse ($post->comments()->latest()->get() as $comment)
+              <li>
+                <p><span class="user_name">{{ $comment->user->name }}</span> {{ $comment->created_at }}</p>
+                <p>{!! nl2br(e($comment->body)) !!}</p>
+              </li>
+            @empty
+              <li>コメントはまだありません！</li>
+            @endforelse
+          </ul>
     </div>
   </main>
 </body>

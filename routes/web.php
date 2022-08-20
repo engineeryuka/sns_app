@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +71,7 @@ Route::get('/{post}/detail', [PostController::class, 'detail'])
 Route::delete('/{post}/destroy', [PostController::class, 'destroy'])
     ->name('posts.destroy')
     ->middleware('auth');       //ログイン済みでない場合、ログイン画面を表示
+
+Route::post('/{post}/comments', [CommentController::class, 'create'])
+    ->name('comments.create')
+    ->where('post', '[0-9]+');

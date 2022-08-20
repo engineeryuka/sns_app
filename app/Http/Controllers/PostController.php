@@ -50,7 +50,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->user_id = Auth::user()->id;
-        $post->username = Auth::user()->name;
+        // $post->username = Auth::user()->name;
         $post->body = $request->body;
         $post->save();
 
@@ -84,7 +84,7 @@ class PostController extends Controller
         // ]);
 
         $post->user_id = Auth::user()->id;
-        $post->username = Auth::user()->name;
+        // $post->username = Auth::user()->name;
         $post->body = $request->body;
         $post->save();
 

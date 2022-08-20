@@ -24,7 +24,7 @@ header .container {
   padding: 0 16px;
   border-bottom: 1px solid;
   display: flex;
-  background: pink;
+  background: white;
 }
 
 h1 {
@@ -57,7 +57,7 @@ textarea {
   height: 80px;
 }
 
-.form-post {
+.form-input {
   text-align: right;
 }
 
@@ -82,6 +82,14 @@ h2 + ul > li {
   border-bottom: 1px solid #ccc;
 }
 
+.comment_link {
+  text-align: right;
+}
+
+.user_name {
+  font-weight: bold;
+}
+
 /* エラー */
 .error {
   color: red;
@@ -92,6 +100,7 @@ h2 + ul > li {
 /* 投稿を管理する */
 .management {
   display: flex;
+  margin-top: 8px;
 }
 
 .management > a {
@@ -122,4 +131,18 @@ li > p {
 .editcheck {
   font-size: 12px;
   color: #ccc;
+}
+
+/* 詳細 */
+h3 {
+  border-bottom: 1px solid;
+  font-size: 16px;
+  margin: 16px 0;
+  padding-bottom: 8px;
+  /* display: flex; */
+}
+
+form + ul > li, h3 + ul > li {
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
 }

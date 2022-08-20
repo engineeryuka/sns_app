@@ -47,7 +47,7 @@
       @auth
         <form method="post" action="{{ route('posts.create') }}">
           @csrf
-          <div class="form-post">
+          <div class="form-input">
             <textarea name="body">{{ old('body') }}</textarea>
             @error('body')
               <div class="error">{{ $message }}</div>
@@ -71,8 +71,9 @@
           @if ($post->created_at <> $post->updated_at)
             <p class="editcheck">編集済み</p>
           @endif
-          <p>{{ $post->username }} {{ $post->created_at }}</p>
+          <p><span class="user_name">{{ $post->user->name }}</span> {{ $post->created_at }}</p>
           <p>{!! nl2br(e($post->body)) !!}</p>
+          <p class="comment_link"><a href="{{ route('posts.detail', $post) }}">コメント</a></p>
         </li>
         @empty
           <li>投稿はまだありません！</li>

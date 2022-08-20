@@ -12,12 +12,17 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
-        'username',
         'body',
     ];
 
     // PostモデルからUserモデルに紐づける
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    // PostモデルとCommentモデルを紐づける
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

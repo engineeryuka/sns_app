@@ -42,7 +42,7 @@
           <li>
             <div class="management">
               <a href="{{ route('posts.edit', $post) }}">[編集]</a>
-              <form method="post" action="{{ route('posts.destroy', $post) }}">
+              <form method="post" action="{{ route('posts.destroy', $post) }}" class="delete-post">
                 @method('DELETE')
                 @csrf
                 <button class="btn">[✖]</button>
@@ -53,6 +53,7 @@
             @endif
             <p>{{ $post->username }} {{ $post->created_at }}</p>
             <p>{!! nl2br(e($post->body)) !!}</p>
+            <p class="comment_link"><a href="{{ route('posts.detail', $post) }}">コメント</a></p>
           </li>
         @empty
           <li>投稿はまだありません！</li>
@@ -60,5 +61,21 @@
       </ul>
     </div>
   </main>
+  <script>
+    'use strict';
+    {
+      document.querySelectorAll('.delete-post').forEach(form => {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+
+          if (!confirm('削除してもよいですか?')) {
+            return;
+          }
+
+          form.submit();
+        });
+      });
+    }
+  </script>
 </body>
 </html>
