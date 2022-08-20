@@ -33,21 +33,4 @@
       <li>投稿はまだありません！</li>
     @endforelse
   </ul>
-
-  <script>
-    'use strict';
-    {
-      document.querySelectorAll('.withdrawal').forEach(form => {
-        form.addEventListener('submit', e => {
-          e.preventDefault();
-
-          if (!confirm('本当に退会してもよいですか?')) {
-            return;
-          }
-
-          form.submit();
-        });
-      });
-    }
-  </script>
 </x-layout>
